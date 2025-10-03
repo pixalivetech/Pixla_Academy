@@ -112,7 +112,7 @@ export default function ProgramsSection() {
                 alt={program.title}
                 className="w-70 h-70 object-cover"
               />
-              <div className="absolute inset-0 bg-black/40"></div>
+              <div className="absolute inset-0 bg-black/30"></div>
 
               {/* Title Centered */}
               <div className="absolute inset-0 flex items-center justify-center">

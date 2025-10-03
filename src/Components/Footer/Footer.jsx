@@ -52,20 +52,21 @@ const Footer = () => {
       <div className="flex flex-col md:flex-row justify-between items-center py-8">
         {/* Left Side */}
         <div>
-          <a href="#" className="hover:underline text-lg md:text-xl">
+          <a href="/" className="hover:underline text-lg md:text-xl">
             Privacy & Policy
           </a>
         </div>
 
         {/* Right Side */}
         <div className="flex space-x-18 mt-4 md:mt-0">
-          <a href="#" className="hover:underline text-lg md:text-xl">
+          
+           <a href="/" className="hover:underline text-lg md:text-xl">
             Home
           </a>
-          <a href="#" className="hover:underline text-lg md:text-xl">
+          <a href="/mern-fullstack" className="hover:underline text-lg md:text-xl">
             Programs
           </a>
-          <a href="#" className="hover:underline text-lg md:text-xl">
+          <a href="/college-onboarding" className="hover:underline text-lg md:text-xl">
             Collage
           </a>
         </div>
@@ -75,9 +76,9 @@ const Footer = () => {
       <div className="grid md:grid-cols-3 gap-8 py-10 border-b border-gray-700">
         {/* Left Links */}
         <div className="flex flex-col space-y-4 text-lg md:text-xl">
-          <a href="#" className="hover:underline">Campus Life</a>
-          <a href="#" className="hover:underline">Student & Support</a>
-          <a href="#" className="hover:underline">Sports</a>
+          <a href="/franchise" className="hover:underline">Campus Life</a>
+          <a href="/student-onboarding" className="hover:underline">Student & Support</a>
+          <a href="/" className="hover:underline">Sports</a>
         </div>
 
         {/* Center Empty for Balance */}
@@ -86,13 +87,13 @@ const Footer = () => {
         {/* Quick Menu */}
         <div className="flex flex-col space-y-4 text-lg md:text-xl">
           <h3 className="font-bold text-xl mb-2">Quick Menu</h3><br />
-          <a href="#" className="flex items-center justify-between hover:underline">
+          <a href="/about" className="flex items-center justify-between hover:underline">
             About <span>→</span>
           </a>
-          <a href="#" className="flex items-center justify-between hover:underline">
+          <a href="/hireus" className="flex items-center justify-between hover:underline">
             Career Help <span>→</span>
           </a>
-          <a href="#" className="flex items-center justify-between hover:underline">
+          <a href="/mern-fullstack" className="flex items-center justify-between hover:underline">
             Major Program <span>→</span>
           </a>
         </div>
