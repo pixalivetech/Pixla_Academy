@@ -102,7 +102,7 @@ const ApplicationForm = () => {
             <input
               type="tel"
               id="mobile"
-              value={formData.mobile}
+              value={formData.phone}
               onChange={handleChange}
               placeholder="Enter Mobile Number"
               className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"

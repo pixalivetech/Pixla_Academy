@@ -1,181 +1,210 @@
-import React, { useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { CheckCircle } from "lucide-react";
+import "./scrollbar.css"; // create this file (CSS below)
 
 export default function CourseFees() {
-  const offlinePlans = [
+  const courses = [
     {
-      title: "One Time Plan",
-      price: "₹55,000",
-      period: "/ month",
-      description: "All the basic features to boost your freelance career",
+      title: "Pixla Spark",
+      description:
+        "Focused learning in trending technologies for rapid upskilling. Practical digital skill development to stay industry-ready.",
+      duration: "1–2 Months",
+      priceOnline: "₹9,999",
+      priceOffline: "₹19,999",
       features: [
-        "Full Access to Design tools",
-        "Placement Support",
-        "Expressions Mentor",
-        "Weekly Assessments",
-        "Mock interview",
+        "Advanced training & stipend",
+        "Placement guarantee",
+         "Industry internship exposure",
+        "Practical project-based learning",
       ],
     },
     {
-      title: "2 Months EMI Plan",
-      price: "₹27,999",
-      period: "/ month",
-      description: "All the basic features to boost your freelance career",
+      title: "Pixla Elevate",
+      popular: true,
+      description:
+        "Hands-on training with latest tools & technologies. Industry-oriented internship exposure to gain real-world project experience.",
+      duration: "6 Months",
+      priceOnline: "₹74,999",
+      priceOffline: "₹99,999",
       features: [
-        "Full Access to Design tools",
-        "Placement Support",
-        "Expressions Mentor",
-        "Weekly Assessments",
-        "Mock interview",
+        "Free laptop to support your learning",
+        "Real-time project training",
+        "Guaranteed placement in top companies",
+        "Industry internship exposure",
       ],
     },
     {
-      title: "3 Months EMI Plan",
-      price: "₹18,999",
-      period: "/ month",
-      description: "All the basic features to boost your freelance career",
+      title: "Pixla Deploy",
+      description:
+        "Core skill development in coding, design, marketing, or business. Mentorship from industry professionals.",
+      duration: "8–10 Months",
+      priceOnline: "₹1,99,999",
+      priceOffline: "₹2,49,999",
       features: [
-        "Full Access to Design tools",
-        "Placement Support",
-        "Expressions Mentor",
-        "Weekly Assessments",
-        "Mock interview",
-      ],
-    },
-  ];
-
-  const onlinePlans = [
-    {
-      title: "One Time Plan",
-      price: "₹45,000",
-      period: "/ month",
-      description: "All the basic features to boost your freelance career",
-      features: [
-        "Full Access to Design tools",
-        "Placement Support",
-        "Expressions Mentor",
-        "Weekly Assessments",
-        "Mock interview",
+        "Laptop provided",
+        "Bootcamps & hackathons",
+        "Placement readiness program",
+        "College-focused training structure",
       ],
     },
     {
-      title: "2 Months EMI Plan",
-      price: "₹22,999",
-      period: "/ month",
-      description: "All the basic features to boost your freelance career",
+      title: "Pixla Edge",
+      description:
+        "Integrated learning with projects & internships for practical industry exposure. Mentorship from industry professionals.",
+      duration: "4 Years",
+      priceOnline: "₹99,999",
+      priceOffline: "₹99,999",
       features: [
-        "Full Access to Design tools",
-        "Placement Support",
-        "Expressions Mentor",
-        "Weekly Assessments",
-        "Mock interview",
+        "Free laptop & learning resources",
+        "Continuous skill support",
+        "Full 4-year guidance program",
+        "Real-world project exposure",
       ],
     },
     {
-      title: "3 Months EMI Plan",
-      price: "₹15,999",
-      period: "/ month",
-      description: "All the basic features to boost your freelance career",
+      title: "Pixla Learn",
+      description:
+        "Lifetime access to Pixla’s premium resources, mentorship, and updates. Perfect for professionals who want to stay ahead.",
+      duration: "Lifetime",
+      priceOnline: "₹29,999",
+      priceOffline: "₹49,999",
       features: [
-        "Full Access to Design tools",
-        "Placement Support",
-        "Expressions Mentor",
-        "Weekly Assessments",
-        "Mock interview",
+        "Lifetime mentorship & updates",
+        "All premium resources unlocked",
+        "Networking with top mentors",
+        "Exclusive Pixla community access",
       ],
     },
   ];
 
-  const [isOffline, setIsOffline] = useState(true);
-  const plans = isOffline ? offlinePlans : onlinePlans;
+  const scrollRef = useRef(null);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    let scrollPosition = 0;
+
+    const scroll = () => {
+      if (!paused && scrollContainer) {
+        scrollPosition += 1; // scroll speed
+        scrollContainer.scrollLeft = scrollPosition;
+        if (scrollPosition >= scrollContainer.scrollWidth / 2) {
+          scrollPosition = 0;
+        }
+      }
+    };
+
+    const interval = setInterval(scroll, 20);
+    return () => clearInterval(interval);
+  }, [paused]);
 
   return (
-    <section className="px-6 md:px-24 py-20 flex justify-center">
-      <div className="max-w-[1280px] w-full">
-        {/* Top Section Heading */}
+    <section className="px-6 md:px-24 py-20 bg-white text-black">
+      <div className="max-w-[1280px] w-full mx-auto">
+        {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-16">
           <div className="max-w-md mb-6 md:mb-0">
-            <h2 className="text-3xl font-bold mb-2">Course Fees</h2>
-            <p className="text-2xl font-semibold leading-snug">
-              Flexible Payment Options, <br /> One Perfect Fit for You
+            <h2 className="text-3xl font-bold mb-2">Pixla Programs</h2>
+            <p className="text-2xl font-semibold leading-snug text-gray-800">
+              Flexible, Practical, and Career-Focused Learning Tracks
             </p>
           </div>
-          <div className="max-w-lg text-gray-500 text-sm leading-relaxed">
-            We provide 4 flexible payment options designed to fit every budget.
-            Whether you prefer easy installments or a one-time payment, we’ve
-            got you covered. All our prices are in INR and inclusive of GST.
-            <br />
-            <br />
-            Choose the plan that works best for you and pay your way.
+          <div className="max-w-lg text-gray-600 text-sm leading-relaxed">
+            Choose from five unique Pixla learning programs tailored to your
+            career goals — from short-term upskilling to long-term full-stack
+            mastery. Every program includes mentorship, real-world projects, and
+            guaranteed placement opportunities.
           </div>
         </div>
 
-        {/* Toggle Tabs */}
-        <div className="flex justify-center mb-12">
-  <div className="flex border border-gray-300 rounded-xl overflow-hidden">
-    <button
-      onClick={() => setIsOffline(true)}
-      className={`px-6 py-2 font-medium transition-colors ${
-        isOffline
-          ? "bg-yellow-400 text-black"
-          : "bg-white text-black"
-      }`}
-    >
-      Offline Course
-    </button>
-    <button
-      onClick={() => setIsOffline(false)}
-      className={`px-6 py-3 font-medium transition-colors ${
-        !isOffline
-          ? "bg-yellow-400 text-black"
-          : "bg-white text-black"
-      }`}
-    >
-      Online Course
-    </button>
-  </div>
-</div>
-
-
-
-        {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-9">
-          {plans.map((plan, idx) => (
+        {/* Auto-scrolling cards */}
+        <div
+          ref={scrollRef}
+          className="flex overflow-x-scroll space-x-8 scrollbar-hide"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          {[...courses, ...courses].map((plan, idx) => (
             <div
               key={idx}
-              className={`relative p-15 rounded-xl shadow-sm ${
-                idx === 0 ? "bg-black text-white" : "bg-[#f5f5f5] text-black"
-              } flex flex-col`}
+              className={`relative flex-shrink-0 w-[300px] md:w-[360px] h-[560px] rounded-md p-8 shadow-md flex flex-col transition-transform duration-300 hover:scale-105 ${
+                plan.popular ? "bg-black text-white" : "bg-[#f5f5f5]"
+              }`}
             >
-              {/* Show Popular only on first card */}
-              {idx === 0 && (
-                <span className="absolute top-5 right-5 bg-yellow-400 text-black text-[10px] font-semibold px-3 py-1 rounded-full">
+              {/* Popular Tag */}
+              {plan.popular && (
+                <span className="absolute top-5 right-5 bg-yellow-400 text-black text-xs font-semibold px-3 py-1 rounded-full">
                   Popular
                 </span>
               )}
 
-              <h3 className="text-sm font-medium mb-2">{plan.title}</h3>
+              <h3 className="text-xl font-semibold mb-3">{plan.title}</h3>
+              <p
+                className={`text-sm mb-4 ${
+                  plan.popular ? "text-gray-300" : "text-gray-600"
+                }`}
+              >
+                {plan.description}
+              </p>
 
-              <div className="flex items-baseline gap-1 mb-3">
-                <span className="text-4xl font-bold">{plan.price}</span>
-                <span className="text-sm text-gray-400">{plan.period}</span>
+              <div className="mb-4">
+                <p className="text-sm font-medium mb-1">
+                  Duration:{" "}
+                  <span
+                    className={`${plan.popular ? "text-yellow-400" : "text-black"}`}
+                  >
+                    {plan.duration}
+                  </span>
+                </p>
+                <p className="text-sm font-medium">
+                  Price:{" "}
+                  <span
+                    className={`${plan.popular ? "text-yellow-400" : "text-black"}`}
+                  >
+                    Online {plan.priceOnline} & Offline {plan.priceOffline}
+                  </span>
+                </p>
               </div>
+              
+              
+              <button
+  onClick={() => (window.location.href = "/contact")}
+  className={`w-full rounded-md py-3 text-sm font-medium mt-10 mb-4 ${
+    plan.popular
+      ? "bg-yellow-400 text-black"
+      : "bg-black text-white"
+  }`}
+>
+  Get Started
+</button>
 
-              <p className="text-sm mb-6 text-gray-400">{plan.description}</p>
 
-              <button className="w-full rounded-md py-3 text-sm font-medium mb-4 bg-yellow-400 text-black">
-                Get Start
-              </button>
-
-              <button className="w-full rounded-md py-3 text-sm font-medium mb-6 border border-gray-300 text-gray-400">
-                Check price details
+              <button
+                className={`w-full rounded-md py-3 text-sm font-medium mb-6 border ${
+                  plan.popular
+                    ? "border-gray-500 text-gray-300"
+                    : "border-gray-300 text-gray-600"
+                }`}
+              >
+                Check Details
               </button>
 
               <div className="space-y-3 mt-auto">
                 {plan.features.map((feature, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <CheckCircle size={16} className="text-yellow-400" />
-                    <span className="text-sm">{feature}</span>
+                    <CheckCircle
+                      size={16}
+                      className={
+                        plan.popular ? "text-yellow-400" : "text-yellow-500"
+                      }
+                    />
+                    <span
+                      className={`text-sm ${
+                        plan.popular ? "text-gray-200" : "text-gray-800"
+                      }`}
+                    >
+                      {feature}
+                    </span>
                   </div>
                 ))}
               </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import Hero3 from '../Components/Courses/Java/Hero3';
 import Collection from '../Components/Courses/Java/Collection';
 import Course from '../Components/Courses/Java/Course';
-import Fees from '../Components/Courses/Java/Fees';
+import Fees from '../Components/Courses/Mern/Fees';
 import Works from '../Components/Courses/Java/Works';
 
 const DesignPages = () => {
