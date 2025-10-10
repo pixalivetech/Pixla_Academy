@@ -4,7 +4,7 @@ import PartnersSection from '../Components/College Onboarding/Partner'
 import Benefits from './../Components/College Onboarding/Benefits'
 import Placement from './../Components/College Onboarding/Placement'
 import Internship from './../Components/College Onboarding/Internship'
-import Contacts from "../components/Landing/contact"
+import Contacts from "../Components/Landing/contact"
 
 const College = () => {
   return (
