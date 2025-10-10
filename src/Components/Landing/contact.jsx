@@ -1,6 +1,6 @@
 // src/components/ContactSection.jsx
 import { useState } from "react";
-import UniBg from "./../../assets/Land/leadhero.jpg";
+import UniBg from './../../assets/Land/leadhero.jpg';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
