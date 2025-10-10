@@ -1,16 +1,16 @@
 import React from "react";
-import Hero from "../components/Landing/hero";
-import About from "../components/Landing/about"
-import University from "../components/Landing/university"
-import Location from "../components/Landing/location"
-import Journey from "../components/Landing/journey"
-import Logos from "../components/Landing/logos"
-import Program from "../components/Landing/program"
-import Leadhero from "../components/Landing/leadhero"
-import Test from "../components/Landing/testimonials"
-import Contact from "../components/Landing/contact"
-import Blog from "../components/Landing/blog"
-import Subscribe from "../components/Landing/subscribe"
+import Hero from "../Components/Landing/hero";
+import About from "../Components/Landing/about"
+import University from "../Components/Landing/university"
+import Location from "../Components/Landing/location"
+import Journey from "../Components/Landing/journey"
+import Logos from "../Components/Landing/logos"
+import Program from "../Components/Landing/program"
+import Leadhero from "../Components/Landing/leadhero"
+import Test from "../Components/Landing/testimonials"
+import Contact from "../Components/Landing/contact"
+import Blog from "../Components/Landing/blog"
+import Subscribe from "../Components/Landing/subscribe"
 
 
 function App() {
