@@ -86,7 +86,7 @@ export default function CourseDetails() {
 
   return (
     // Outer section: Removed horizontal padding (e.g., px-6 md:px-24)
-    <section className="py-16 flex justify-center">
+    <section className=" px-6 md:px-24 py-16 flex justify-center">
       <div className="max-w-[1280px] w-full">
         
         {/* Top Section: Added mobile padding (px-4 sm:px-6) */}

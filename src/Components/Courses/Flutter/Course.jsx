@@ -87,7 +87,7 @@ export default function CourseDetails() {
 
   return (
     // 1. FIXED: Remove horizontal padding (e.g., px-6 md:px-24) from the outermost section.
-    <section className="py-16 flex justify-center">
+    <section className=" px-6 md:px-24 py-16 flex justify-center">
       <div className="max-w-[1280px] w-full">
         
         {/* Top Section: FIXED: Apply responsive padding here. */}

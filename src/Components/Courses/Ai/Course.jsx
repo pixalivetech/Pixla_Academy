@@ -146,7 +146,7 @@ export default function CourseDetails() {
 
   return (
     // Outer section padding (applies to all content except the full-width elements)
-    <section className="py-16 flex justify-center">
+   <section className=" px-6 md:px-24 py-16 flex justify-center">
       <div className="max-w-[1280px] w-full">
         
         {/* Top Section - Keep content within the max-width container */}

@@ -133,9 +133,8 @@ export default function CourseDetails() {
 
   return (
     // 1. Remove all horizontal padding (px-...) from the outer section.
-    <section className="py-16 flex justify-center">
-      
-      {/* 2. Main content wrapper: Max width and centered */}
+   
+        <section className=" px-6 md:px-24 py-16 flex justify-center">
       <div className="max-w-[1280px] w-full">
         
         {/* Top Section: Apply padding here for alignment */}

@@ -78,7 +78,7 @@ const Footer = () => {
         <div className="flex flex-col space-y-4 text-lg md:text-xl">
           <a href="/franchise" className="hover:underline">Campus Life</a>
           <a href="/student-onboarding" className="hover:underline">Student & Support</a>
-          <a href="/" className="hover:underline">Sports</a>
+          
         </div>
 
         {/* Center Empty for Balance */}

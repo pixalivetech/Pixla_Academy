@@ -110,8 +110,8 @@ export default function CourseDetails() {
 
     return (
         // Outer section: Removed fixed padding (px-6 md:px-24) and applied a fluid padding to center content better
-        <section className="py-16 md:py-20 flex justify-center">
-            <div className="max-w-[1280px] w-full">
+       <section className=" px-6 md:px-24 py-16 flex justify-center">
+      <div className="max-w-[1280px] w-full">
 
                 {/* Top Section: Added mobile padding (px-4 sm:px-6) */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16 mb-10 px-4 sm:px-6 md:px-0">
