@@ -3,7 +3,7 @@ import React from "react";
 // Import team images
 import rajeseker from "../../assets/About/rajsekar.png";
 import sathishkumar from "../../assets/About/sathishkumar.png";
-import murugan from "../../assets/About/murugan.png";
+import murugan from "../../assets/About/Murugan.png";
 import mohan from "../../assets/About/mohanraj.png";
 import sivakumar from "../../assets/About/sivakumar.png";
 import mayakannan from "../../assets/About/mayakannan.png";
