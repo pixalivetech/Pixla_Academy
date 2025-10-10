@@ -15,8 +15,18 @@ export default function ContactSection() {
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const { name, value, type, checked } = e.target;
+    if (type === "checkbox") {
+      setFormData({
+        ...formData,
+        mode: checked ? value : "", // only one mode allowed
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -24,26 +34,15 @@ export default function ContactSection() {
     setLoading(true);
 
     try {
-      const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
-
-      const response = await fetch(`${API_URL}/send-mail`, {
+      // Replace with your production backend endpoint
+      const response = await fetch("https://your-production-backend.com/send-mail", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       const result = await response.json();
-      alert(result.message);
-
-      // Reset form after success
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        program: "",
-        message: "",
-        mode: "",
-      });
+      alert(result.message || "Message sent successfully!");
     } catch (error) {
       console.error("Error:", error);
       alert("❌ Something went wrong!");
@@ -57,17 +56,16 @@ export default function ContactSection() {
       className="relative bg-cover bg-center py-20 px-6 md:px-24"
       style={{ backgroundImage: `url(${UniBg})` }}
     >
-      {/* Yellow to white gradient overlay */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-yellow-300/90 to-white/95"></div>
 
-      {/* Content */}
       <div className="relative z-10 flex flex-col items-center">
         <p className="text-sm font-medium text-black mt-5 mb-2">Contact Us</p>
         <h2 className="text-3xl md:text-4xl font-semibold text-black mb-10">
           Get In Touch
         </h2>
 
-        {/* Contact Form Card */}
+        {/* Contact Form */}
         <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-lg">
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Name Fields */}
@@ -112,7 +110,7 @@ export default function ContactSection() {
               />
             </div>
 
-            {/* Program Dropdown */}
+            {/* Program */}
             <div className="flex flex-col">
               <label className="text-gray-700 font-medium mb-1">Program</label>
               <select
@@ -122,9 +120,7 @@ export default function ContactSection() {
                 className="w-full text-gray-500 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 required
               >
-                <option value="" disabled>
-                  Choose a Program
-                </option>
+                <option value="" disabled>Choose a Program</option>
                 <option value="MERN/MEAN Full Stack Development">MERN/MEAN Full Stack Development</option>
                 <option value="AI Full Stack Development">AI Full Stack Development</option>
                 <option value="Flutter Full Stack Development">Flutter Full Stack Development</option>
@@ -148,38 +144,36 @@ export default function ContactSection() {
                 rows="4"
                 className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 required
-              ></textarea>
+              />
             </div>
 
-            {/* Mode Radio Buttons */}
+            {/* Mode */}
             <div className="flex flex-col">
               <div className="flex items-center gap-6">
                 <label className="flex items-center gap-2 text-gray-700">
                   <input
-                    type="radio"
+                    type="checkbox"
                     name="mode"
                     value="online"
                     checked={formData.mode === "online"}
                     onChange={handleChange}
                     className="w-5 h-5"
-                  />{" "}
-                  Online
+                  /> Online
                 </label>
                 <label className="flex items-center gap-2 text-gray-700">
                   <input
-                    type="radio"
+                    type="checkbox"
                     name="mode"
                     value="offline"
                     checked={formData.mode === "offline"}
                     onChange={handleChange}
                     className="w-5 h-5"
-                  />{" "}
-                  Offline
+                  /> Offline
                 </label>
               </div>
             </div>
 
-            {/* Submit Button */}
+            {/* Submit */}
             <div className="flex justify-end">
               <button
                 type="submit"
