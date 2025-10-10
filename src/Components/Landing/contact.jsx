@@ -15,18 +15,8 @@ export default function ContactSection() {
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    if (type === "checkbox") {
-      setFormData({
-        ...formData,
-        mode: checked ? value : "", // only one mode allowed
-      });
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    }
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -34,7 +24,9 @@ export default function ContactSection() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/send-mail", {
+      const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
+      const response = await fetch(`${API_URL}/send-mail`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -42,6 +34,16 @@ export default function ContactSection() {
 
       const result = await response.json();
       alert(result.message);
+
+      // Reset form after success
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        program: "",
+        message: "",
+        mode: "",
+      });
     } catch (error) {
       console.error("Error:", error);
       alert("❌ Something went wrong!");
@@ -149,12 +151,12 @@ export default function ContactSection() {
               ></textarea>
             </div>
 
-            {/* Checkboxes */}
+            {/* Mode Radio Buttons */}
             <div className="flex flex-col">
               <div className="flex items-center gap-6">
                 <label className="flex items-center gap-2 text-gray-700">
                   <input
-                    type="checkbox"
+                    type="radio"
                     name="mode"
                     value="online"
                     checked={formData.mode === "online"}
@@ -165,7 +167,7 @@ export default function ContactSection() {
                 </label>
                 <label className="flex items-center gap-2 text-gray-700">
                   <input
-                    type="checkbox"
+                    type="radio"
                     name="mode"
                     value="offline"
                     checked={formData.mode === "offline"}
