@@ -4,7 +4,7 @@ import PartnersSection from '../Components/Students Onboarding/Partner'
 import Benefits from './../Components/Students Onboarding/Benefits'
 import Placement from './../Components/Students Onboarding/Placement'
 import Internship from './../Components/Students Onboarding/Internship'
-import Contacts from "../Components/Landing/contact"
+import Contacts from "../Components/Landing/Contact"
 import { Contact } from 'lucide-react'
 
 const College = () => {
