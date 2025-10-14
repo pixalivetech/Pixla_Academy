@@ -1,5 +1,4 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
 import Photo1 from "./../../assets/Franchise/m1.png"
 import Photo2 from "./../../assets/Franchise/m2.png"
 import Photo3 from "./../../assets/Franchise/m3.png"
@@ -30,40 +29,42 @@ const cards = [
 ];
 
 const Models = () => {
-  const bgImageUrl =bgImage ;
-
   return (
-    <div className="min-h-screen relative overflow-hidden  px-6 md:px-24 py-16 md:py-32 bg-gray-900 text-white font-sans">
+    <div className="relative px-4 md:px-10 lg:px-24 py-16 bg-gray-900 text-white font-sans overflow-hidden">
+      
+      {/* Background Image */}
       <div
-        className="absolute inset-0 z-0 bg-cover bg-center opacity-100"
-        style={{ backgroundImage: `url('${bgImageUrl}')` }}
+        className="absolute inset-0 bg-cover bg-center opacity-80"
+        style={{ backgroundImage: `url(${bgImage})` }}
       ></div>
-      <div className="relative z-10 flex flex-col items-center">
-        <div className=" mx-auto">
-          <h1 className="text-3xl md:text-4xl font-semibold mb-16 text-left">Franchise Models</h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {cards.map((card, index) => (
-              <div key={index} className="bg-white rounded-lg p-5 overflow-hidden shadow-xl transform transition-transform duration-300 hover:scale-105">
-                <div className="aspect-w-16 aspect-h-9 w-full">
-                  <img src={card.image} alt={card.title} className="w-full h-full object-cover rounded-md" />
-                </div>
-                <div className="p-3 text-gray-800">
-                  <h2 className="text-xl lg:text-2xl font-bold mb-4">{card.title}</h2>
-                  <div className="space-y-2 text-sm lg:text-base">
-                    <p>
-                      <span className="font-semibold">Setup:</span> {card.setup}
-                    </p>
-                    <p>
-                      <span className="font-semibold">Investment:</span> {card.investment}
-                    </p>
-                    <p>
-                      <span className="font-semibold">ROI:</span> {card.roi}
-                    </p>
-                  </div>
+      <div className="absolute inset-0 bg-black/50"></div>
+
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <h1 className="text-2xl md:text-4xl font-semibold mb-10 text-center md:text-left">Franchise Models</h1>
+        
+        {/* Responsive Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {cards.map((card, index) => (
+            <div 
+              key={index} 
+              className="bg-white rounded-lg overflow-hidden shadow-lg flex flex-col transition-transform duration-300 hover:scale-105"
+            >
+              {/* Image */}
+              <div className="w-full h-48 md:h-56 lg:h-60">
+                <img src={card.image} alt={card.title} className="w-full h-full object-cover" />
+              </div>
+
+              {/* Content */}
+              <div className="p-4 text-gray-800 flex flex-col flex-grow">
+                <h2 className="text-lg md:text-xl font-bold mb-3">{card.title}</h2>
+                <div className="space-y-1 text-sm md:text-base flex-grow">
+                  <p><span className="font-semibold">Setup:</span> {card.setup}</p>
+                  <p><span className="font-semibold">Investment:</span> {card.investment}</p>
+                  <p><span className="font-semibold">ROI:</span> {card.roi}</p>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
