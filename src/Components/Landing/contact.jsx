@@ -1,15 +1,17 @@
 // src/components/ContactSection.jsx
-import { useState } from "react";
-import UniBg from './../../assets/Land/leadhero.jpg';
+import { useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
+import UniBg from "./../../assets/Land/leadhero.jpg";
 
 export default function ContactSection() {
+  const formRef = useRef();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     program: "",
     message: "",
-    mode: "", // online / offline
+    mode: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -19,7 +21,7 @@ export default function ContactSection() {
     if (type === "checkbox") {
       setFormData({
         ...formData,
-        mode: checked ? value : "", // only one mode allowed
+        mode: checked ? value : "",
       });
     } else {
       setFormData({
@@ -29,26 +31,44 @@ export default function ContactSection() {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
 
-    try {
-      // Replace with your production backend endpoint
-      const response = await fetch("https://your-production-backend.com/send-mail", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-      alert(result.message || "Message sent successfully!");
-    } catch (error) {
-      console.error("Error:", error);
-      alert("❌ Something went wrong!");
-    } finally {
-      setLoading(false);
-    }
+    emailjs
+      .send(
+        "service_tjptnab", // ✅ Your service ID
+        "template_2gbypv7", // ✅ Your template ID
+        {
+          from_name: `${formData.firstName} ${formData.lastName}`,
+          reply_to: formData.email,
+          email: formData.email,
+          program: formData.program,
+          mode: formData.mode,
+          message: formData.message,
+        },
+        "mOjbSAlY25mRszit8" // ✅ Your public key
+      )
+      .then(
+        (result) => {
+          console.log("✅ Email sent successfully!", result.text);
+          alert("✅ Message sent successfully!");
+          setLoading(false);
+          setFormData({
+            firstName: "",
+            lastName: "",
+            email: "",
+            program: "",
+            message: "",
+            mode: "",
+          });
+        },
+        (error) => {
+          console.error("❌ Failed to send email:", error);
+          alert("❌ Failed to send message. Please try again.");
+          setLoading(false);
+        }
+      );
   };
 
   return (
@@ -67,11 +87,13 @@ export default function ContactSection() {
 
         {/* Contact Form */}
         <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-lg">
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
             {/* Name Fields */}
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col">
-                <label className="text-gray-700 font-medium mb-1">First Name</label>
+                <label className="text-gray-700 font-medium mb-1">
+                  First Name
+                </label>
                 <input
                   type="text"
                   name="firstName"
@@ -83,7 +105,9 @@ export default function ContactSection() {
                 />
               </div>
               <div className="flex flex-col">
-                <label className="text-gray-700 font-medium mb-1">Last Name</label>
+                <label className="text-gray-700 font-medium mb-1">
+                  Last Name
+                </label>
                 <input
                   type="text"
                   name="lastName"
@@ -120,12 +144,24 @@ export default function ContactSection() {
                 className="w-full text-gray-500 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 required
               >
-                <option value="" disabled>Choose a Program</option>
-                <option value="MERN/MEAN Full Stack Development">MERN/MEAN Full Stack Development</option>
-                <option value="AI Full Stack Development">AI Full Stack Development</option>
-                <option value="Flutter Full Stack Development">Flutter Full Stack Development</option>
-                <option value="Java Full Stack Development">Java Full Stack Development</option>
-                <option value="Python Full Stack Development">Python Full Stack Development</option>
+                <option value="" disabled>
+                  Choose a Program
+                </option>
+                <option value="MERN/MEAN Full Stack Development">
+                  MERN/MEAN Full Stack Development
+                </option>
+                <option value="AI Full Stack Development">
+                  AI Full Stack Development
+                </option>
+                <option value="Flutter Full Stack Development">
+                  Flutter Full Stack Development
+                </option>
+                <option value="Java Full Stack Development">
+                  Java Full Stack Development
+                </option>
+                <option value="Python Full Stack Development">
+                  Python Full Stack Development
+                </option>
                 <option value="DevOps">DevOps</option>
                 <option value="Software Testing">Software Testing</option>
                 <option value="UI/UX Design">UI/UX Design</option>
@@ -158,7 +194,8 @@ export default function ContactSection() {
                     checked={formData.mode === "online"}
                     onChange={handleChange}
                     className="w-5 h-5"
-                  /> Online
+                  />{" "}
+                  Online
                 </label>
                 <label className="flex items-center gap-2 text-gray-700">
                   <input
@@ -168,7 +205,8 @@ export default function ContactSection() {
                     checked={formData.mode === "offline"}
                     onChange={handleChange}
                     className="w-5 h-5"
-                  /> Offline
+                  />{" "}
+                  Offline
                 </label>
               </div>
             </div>
