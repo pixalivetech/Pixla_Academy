@@ -1,6 +1,5 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import bgImage1 from "./../../assets/Franchise/b-bg.png"
+import bgImage1 from "./../../assets/Franchise/b-bg.png";
 
 const keyPoints = [
   'Passion for education & student success.',
@@ -17,38 +16,40 @@ const keyPoints = [
 ];
 
 const Benefits = () => {
-  const imageUrl = bgImage1;
-
   return (
-    <div className="bg-gray-100 min-h-screen px-6 md:px-24 py-16 md:py-32 font-poppins">
+    <div className="bg-gray-100 px-4 md:px-12 lg:px-24 py-12 md:py-20 font-poppins">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl lg:text-4xl font-semibold text-gray-800 mb-12 lg:mb-16">
+        
+        {/* Title */}
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-800 mb-8 md:mb-12 text-center lg:text-left">
           Ideal & Benefits Franchise Partners
         </h1>
-        <div className="flex flex-col lg:flex-row items-center lg:items-start space-y-8 lg:space-y-0 lg:space-x-12">
-          {/* Left Side Image */}
+
+        {/* Layout Wrapper */}
+        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10">
+
+          {/* Left Image */}
           <div className="w-full lg:w-1/2 flex justify-center lg:justify-start">
             <img 
-              src={imageUrl} 
-              alt="Group of people" 
-              className="w-[513px] h-auto object-cover rounded-lg shadow-xl" 
+              src={bgImage1} 
+              alt="Franchise Partner" 
+              className="w-full max-w-md lg:max-w-lg h-auto object-cover rounded-lg shadow-lg"
             />
           </div>
 
-          {/* Right Side List */}
+          {/* Right List */}
           <div className="w-full lg:w-1/2">
-            <ol className="list-none space-y-5">
+            <ol className="space-y-4 md:space-y-5">
               {keyPoints.map((point, index) => (
-                <li key={index} className="text-base lg:text-lg text-gray-700 flex items-start">
-                  <span className="font-semibold text-sm md:text-lg text-black mr-3">
-                    {index + 1}.
-                  </span>
+                <li key={index} className="flex items-start text-gray-700 text-sm md:text-base lg:text-lg">
+                  <span className="font-semibold text-black mr-2">{index + 1}.</span>
                   <span>{point}</span>
                 </li>
               ))}
             </ol>
           </div>
         </div>
+
       </div>
     </div>
   );

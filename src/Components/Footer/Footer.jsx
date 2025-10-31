@@ -49,10 +49,12 @@ const Footer = () => {
 </div>
 
       {/* Middle Section */}
-      <div className="flex flex-col md:flex-row justify-between items-center py-8">
-        {/* Left Side */}
-        <div>
-          <a href="/" className="hover:underline text-lg md:text-xl">
+      <div className="flex flex-col md:flex-row justify-between items-center py-6 text-sm md:text-lg">
+        <div className="flex flex-col items-center md:items-start">
+          <a href="/terms" className="hover:underline mb-2">
+            Terms & Conditions
+          </a>
+          <a href="/privacy" className="hover:underline">
             Privacy & Policy
           </a>
         </div>
@@ -103,9 +105,8 @@ const Footer = () => {
       <div className="flex flex-col md:flex-row justify-between items-center mt-6 text-base md:text-lg space-y-4 md:space-y-0">
         {/* Social Icons */}
         <div className="flex space-x-6 text-gray-400 text-xl">
-          <a href="#" className="hover:text-white"><FaLinkedin /></a>
-          <a href="#" className="hover:text-white"><FaTwitter /></a>
-          <a href="#" className="hover:text-white"><FaInstagram /></a>
+          <a href="https://www.linkedin.com/company/pixla-gold-network" className="hover:text-white"><FaLinkedin /></a>
+          <a href="https://www.instagram.com/pixla_group/" className="hover:text-white"><FaInstagram /></a>
         </div>
 
         {/* Copyright */}

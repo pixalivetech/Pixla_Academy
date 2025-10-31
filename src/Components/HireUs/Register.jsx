@@ -1,50 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 const HireSection = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    company: "",
-    email: "",
-    phone: "",
-  });
   const [status, setStatus] = useState(null); // null | "loading" | "success" | "error"
+  const formRef = useRef();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setStatus("loading");
 
-    try {
-      const res = await fetch("http://localhost:5000/send-mail", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          firstName: formData.firstName,
-          lastName: "",
-          email: formData.email,
-          company: formData.company,
-          phone: formData.phone,
-          program: "Hiring Requirement", // to identify in inbox
-          message: "", // optional (if you want extra message later)
-          mode: "",
-        }),
-      });
-
-      const data = await res.json();
-      if (data.success) {
-        setStatus("success");
-        setFormData({ firstName: "", company: "", email: "", phone: "" });
-      } else {
-        setStatus("error");
-      }
-    } catch (err) {
-      console.error(err);
-      setStatus("error");
-    }
+    emailjs
+      .sendForm(
+        "service_tjptnab", // ✅ your EmailJS Service ID
+        "template_g0l4sk8", // ✅ your Template ID
+        formRef.current, // ✅ form reference
+        "mOjbSAlY25mRszit8" // ✅ your Public Key
+      )
+      .then(
+        (result) => {
+          console.log("✅ Success:", result.text);
+          setStatus("success");
+          e.target.reset();
+        },
+        (error) => {
+          console.error("❌ Failed:", error.text);
+          setStatus("error");
+        }
+      );
   };
 
   return (
@@ -62,15 +44,27 @@ const HireSection = () => {
             Hire Candidates For These High-Demand Tech Positions
           </h3>
           <div className="flex flex-wrap gap-3 mt-6">
-            {["Business Analyst", "Full Stack Development", "Data Analyst", "Front End Development", "Back End Development", "SDET"].map((job, idx) => (
-              <span key={idx} className="px-4 py-2 border border-gray-300 rounded-full text-gray-800 text-sm md:text-base">
+            {[
+              "Business Analyst",
+              "Full Stack Development",
+              "Data Analyst",
+              "Front End Development",
+              "Back End Development",
+              "SDET",
+            ].map((job, idx) => (
+              <span
+                key={idx}
+                className="px-4 py-2 border border-gray-300 rounded-full text-gray-800 text-sm md:text-base"
+              >
                 {job}
               </span>
             ))}
           </div>
           <p className="mt-6 text-gray-600 text-sm md:text-base">
             Want to register for a virtual drive?{" "}
-            <a href="#" className="text-blue-600 font-medium hover:underline">Register here</a>
+            <a href="#" className="text-blue-600 font-medium hover:underline">
+              Register here
+            </a>
           </p>
         </div>
 
@@ -80,14 +74,12 @@ const HireSection = () => {
             Ready to Hire? Register for virtual drives
           </h3>
 
-          <form className="space-y-5" onSubmit={handleSubmit}>
+          <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="block text-sm font-medium text-gray-700">First name</label>
               <input
                 type="text"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
+                name="from_name"
                 placeholder="First name"
                 className="mt-1 w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-yellow-400 focus:outline-none"
                 required
@@ -98,8 +90,6 @@ const HireSection = () => {
               <input
                 type="text"
                 name="company"
-                value={formData.company}
-                onChange={handleChange}
                 placeholder="Enter Your Company"
                 className="mt-1 w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-yellow-400 focus:outline-none"
                 required
@@ -109,9 +99,7 @@ const HireSection = () => {
               <label className="block text-sm font-medium text-gray-700">Work-Email</label>
               <input
                 type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
+                name="reply_to"
                 placeholder="Enter Email"
                 className="mt-1 w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-yellow-400 focus:outline-none"
                 required
@@ -122,13 +110,13 @@ const HireSection = () => {
               <input
                 type="text"
                 name="phone"
-                value={formData.phone}
-                onChange={handleChange}
                 placeholder="Enter Your Mobile Number"
                 className="mt-1 w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-yellow-400 focus:outline-none"
                 required
               />
             </div>
+
+            <input type="hidden" name="program" value="Hiring Requirement" />
 
             <button
               type="submit"

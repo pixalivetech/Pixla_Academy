@@ -2,9 +2,11 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Header from './Components/Header/Header';
 import Footer from "./Components/Footer/Footer";
-import Home from './Pages/Landing';
+import Termsandcondition from "./Components/Policy/Terms&Condition"
+import PrivacyPolicy from "./Components/Policy/Privacypolicy"
+import Home from './Pages/Landings';
 import DesignPages from "./Pages/DesignPages";
-import Contact from "./Components/Landing/Contact";
+import Contact from "./Components/Landing/contact";
 import HireUs from "./Pages/Hireus";
 import College from "./Pages/College";
 import About from './Pages/About';
@@ -52,6 +54,9 @@ function MainApp() {
         <Route path="/college-onboarding" element={<College />} />
         <Route path="/student-onboarding" element={<Student />} />
         <Route path="/franchise" element={<Franchise />} />
+        <Route path="/terms" element={<Termsandcondition />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+
       </Routes>
       <Footer />
     </>
