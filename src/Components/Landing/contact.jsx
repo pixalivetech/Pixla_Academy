@@ -37,8 +37,8 @@ export default function ContactSection() {
 
     emailjs
       .send(
-        "service_tjptnab", // ✅ Your service ID
-        "template_2gbypv7", // ✅ Your template ID
+        "service_om95uul", // ✅ Your service ID
+        "template_3cs9o1y", // ✅ Your template ID
         {
           from_name: `${formData.firstName} ${formData.lastName}`,
           reply_to: formData.email,
@@ -47,7 +47,7 @@ export default function ContactSection() {
           mode: formData.mode,
           message: formData.message,
         },
-        "mOjbSAlY25mRszit8" // ✅ Your public key
+        "Nd39EiR0JFpU46o8O" // ✅ Your public key
       )
       .then(
         (result) => {

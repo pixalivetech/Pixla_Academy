@@ -11,10 +11,10 @@ const HireSection = () => {
 
     emailjs
       .sendForm(
-        "service_tjptnab", // ✅ your EmailJS Service ID
-        "template_g0l4sk8", // ✅ your Template ID
+       "service_om95uul", // ✅ Your service ID
+        "template_3cs9o1y", // ✅ Your template ID
         formRef.current, // ✅ form reference
-        "mOjbSAlY25mRszit8" // ✅ your Public Key
+        "Nd39EiR0JFpU46o8O" // ✅ your Public Key
       )
       .then(
         (result) => {
